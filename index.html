@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -141,6 +142,10 @@
         color: #FF0000;
         /* Change this to the desired color */
     }
+    
+    .italic-label {
+        font-style: italic;
+    }
 </style>
 
 <body>
@@ -188,7 +193,8 @@
 
                 <!-- Add this section to your existing HTML form -->
                 <div class="question">
-                    <label for="outfit-images">Select the outfits you most see yourself in:</label>
+                    <label for="outfit-images">Select the outfits you most see yourself in: </label>
+                    <label for="outfit-images" class="italic-label">(Click the sides of the images to cycle thru options)</label>
                     <div id="outfitCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <!-- girly -->
