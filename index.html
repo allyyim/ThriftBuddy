@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Thrift Buddy - Find Your Personal Thrifting Match</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    h1 {
+        color: #333;
+    }
+    
+    p {
+        color: #555;
+    }
+    
+    .survey {
+        margin-top: 20px;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .question {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    
+    select,
+    input[type="checkbox"] {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+    
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    .results {
+        margin-top: 20px;
+    }
+    
+    #matches {
+        color: #333;
+    }
+    
+    .outfit-images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .outfit-images label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+    }
+    
+    .outfit-images label input {
+        margin-top: 5px;
+    }
+    
+    .outfit-images label img {
+        max-width: 45%;
+        /* Set the maximum width to 100% of the container */
+        height: auto;
+        /* Maintain the aspect ratio */
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .outfit-container {
+        display: flex;
+        /* Use flexbox to ensure items are in the same row */
+        align-items: center;
+        /* Align items vertically in the center */
+    }
+    
+    .carousel-indicators li {
+        background-color: #007BFF;
+        /* Change this to the desired color for inactive indicators */
+        border-color: #007BFF;
+        /* Change this to the desired color for indicator borders */
+    }
+    
+    .carousel-indicators .active {
+        background-color: #28A745;
+        /* Change this to the desired color for the active indicator */
+        border-color: #28A745;
+        /* Change this to the desired color for the active indicator border */
+    }
+    
+    .custom-arrow {
+        color: #FF0000;
+        /* Change this to the desired color */
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Thrift Buddy</h1>
+        <p>Get matched with your perfect personal thrifter!</p>
+
+        <div class="survey">
+            <h2>Take the Thrift Style Survey</h2>
+            <form id="survey-form">
+                <div class="question">
+                    <label for="price-range">What is your typical price range for thrifted clothing?</label>
+                    <select id="price-range" name="price-range">
+                        <option value="under-10">$10 and under</option>
+                        <option value="10-20">$10 - $20</option>
+                        <option value="20-30">$20 - $30</option>
+                        <option value="over-30">$30 and over</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label for="style">Describe your personal style: (Choose all that apply)</label>
+                    <div class="multiple-choice">
+                        <input type="checkbox" id="style-vintage" name="style[]" value="vintage">
+                        <label for="style-vintage">Vintage/Retro</label><br>
+                        <input type="checkbox" id="style-minimalist" name="style[]" value="minimalist">
+                        <label for="style-minimalist">Minimalist</label><br>
+                        <input type="checkbox" id="style-boho" name="style[]" value="boho">
+                        <label for="style-boho">Bohemian/Boho Chic</label><br>
+                        <input type="checkbox" id="style-streetwear" name="style[]" value="streetwear">
+                        <label for="style-streetwear">Streetwear</label><br>
+                        <input type="checkbox" id="style-casual" name="style[]" value="casual">
+                        <label for="style-casual">Casual</label><br>
+                        <input type="checkbox" id="style-formal" name="style[]" value="formal">
+                        <label for="style-formal">Formal</label><br>
+                        <input type="checkbox" id="style-girl" name="style[]" value="girl">
+                        <label for="style-girl">Girlie Girl</label><br>
+                        <input type="checkbox" id="style-ath" name="style[]" value="ath">
+                        <label for="style-ath">Athleisure/Sporty</label><br>
+                        <input type="checkbox" id="style-preppy" name="style[]" value="prep">
+                        <label for="style-preppy">Preppy</label><br>
+                        <input type="checkbox" id="style-other" name="style[]" value="other">
+                        <label for="style-other">Other</label><br>
+                    </div>
+                </div>
+
+                <!-- Add this section to your existing HTML form -->
+                <div class="question">
+                    <label for="outfit-images">Select the outfits you most see yourself in:</label>
+                    <div id="outfitCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- girly -->
+                            <div class="outfit-images">
+                                <div class="outfit-container">
+                                    <div class="carousel-item active">
+                                        <div class="outfit-container">
+                                            <input type="checkbox" id="outfit-image1" name="outfit-image" value="outfit1">
+                                            <label for="outfit-image1"><img src="https://p16-va.lemon8cdn.com/tos-maliva-v-ac5634-us/osP6gy5E7IBGdAzz2G35QfANzoi73BBCyE62Ai~tplv-tej9nj120t-origin.webp" alt="Outfit 1"></label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Outfit 2 -->
+                                    <div class="carousel-item">
+                                        <div class="outfit-container">
+                                            <input type="checkbox" id="outfit-image2" name="outfit-image" value="outfit2">
+                                            <label for="outfit-image2"><img src="https://i.pinimg.com/736x/17/c1/dc/17c1dcde5f926b8c13331e366d95e311.jpg" alt="Outfit 2"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">"
+                                        <div class="outfit-container">
+                                            <!-- minimalist -->
+                                            <input type="checkbox" id="outfit-image3" name="outfit-image" value="outfit3">
+                                            <label for="outfit-image3"><img src="https://intheblouse.elementor.cloud/wp-content/uploads/2023/04/7aadfdb3-6d95-45d1-89c2-efbff186d495-1.png" alt="Outfit 3"></label>
+                                        </div>
+                                    </div>
+
+                                    <!-- preppy -->
+                                    <div class="carousel-item">
+                                        <div class="outfit-container">
+                                            <input type="checkbox" id="outfit-image4" name="outfit-image" value="outfit4">
+                                            <label for="outfit-image4"><img src=" https://i.pinimg.com/564x/87/49/9b/87499b3cd0431696ae14c2d561e7b391.jpg"
+                     alt="Outfit 4"></label>
+                                        </div>
+                                    </div>
+
+                                    <!-- sporty -->
+                                    <div class="carousel-item">
+                                        <div class="outfit-container">
+                                            <input type="checkbox" id="outfit-image5" name="outfit-image" value="outfit5">
+                                            <label for="outfit-image5"><img src="https://kinsta.altitude-sports.com/wp-content/uploads/2021/06/what-is-athleisure02.jpg " alt="Outfit 5"></label>
+                                        </div>
+                                    </div>
+
+                                    <!-- streetwear -->
+                                    <div class="carousel-item">
+                                        <div class="outfit-container">
+                                            <input type="checkbox" id="outfit-image6" name="outfit-image" value="outfit 6">
+                                            <label for="outfit-image6"><img src=" https://images.squarespace-cdn.com/content/v1/603ad9027b5f487d2f778fc1/1615347947338-H1X35VGJFJ4ZZZ69HE34/supreme-streetwear.jpg?format=750w" alt="Outfit 6"></label>
+                                            <!-- Add more image checkboxes as needed -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <a class="carousel-control-prev" href="#outfitCarousel" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true">
+                        <i class="fas fa-chevron-left"></i> <!-- Font Awesome left arrow icon -->
+                      </span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#outfitCarousel" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true">
+                            <i class="fas fa-chevron-right"></i> <!-- Font Awesome right arrow icon -->
+                        </span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#outfitCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#outfitCarousel" data-slide-to="1"></li>
+                                    <!-- Add more indicators as needed -->
+                                </ol>
+                            </div>
+
+
+                            <button type="submit">Find Your Thrift Buddy!</button>
+            </form>
+            </div>
+
+            <div class="results" id="results">
+                <h2>Your Thrift Buddy Match</h2>
+                <p id="matches"></p>
+            </div>
+            </div>
+
+            <script>
+                const surveyForm = document.getElementById('survey-form');
+                const resultsDiv = document.getElementById('matches');
+
+                surveyForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const priceRange = document.getElementById('price-range').value;
+                    const styleCheckboxes = document.querySelectorAll('input[name="style[]"]:checked');
+                    const style = Array.from(styleCheckboxes).map(checkbox => checkbox.value);
+                    const outfitCheckboxes = document.querySelectorAll('input[name="outfit-image"]:checked');
+                    const selectedOutfitImages = Array.from(outfitCheckboxes).map(checkbox => checkbox.value);
+
+
+                    let matchedThrifters = [];
+
+                    // ** Combined matching logic **
+
+                    if (priceRange === 'under-10' && style.includes('vintage')) {
+                        matchedThrifters.push({
+                            name: 'Sarah, the Vintage Hunter',
+                            description: 'Expert at finding unique vintage pieces and accessories under $10.'
+                        });
+                    }
+
+                    if (priceRange === '20-30' && style.includes('minimalist') && selectedOutfitImages.includes('outfit3')) {
+                        matchedThrifters.push({
+                            name: 'Alex, the Minimalist Curator',
+                            description: 'Specializes in sourcing high-quality, minimalist basics within the $20-30 range.'
+                        });
+                    }
+
+                    if (style.includes('boho') && selectedOutfitImages.includes('outfit2')) {
+                        matchedThrifters.push({
+                            name: 'Maya, the Boho Queen',
+                            description: 'Thrives on finding vibrant boho pieces with unique patterns and textures.'
+                        });
+                    }
+                    if (priceRange === '10-20' && style.includes('streetwear')) {
+                        matchedThrifters.push({
+                            name: 'Jordan, the Streetwear Enthusiast',
+                            description: 'Finds trendy streetwear items in the $10-20 price range.'
+                        });
+                    }
+
+                    if (priceRange === 'over-30' && style.includes('other')) {
+                        matchedThrifters.push({
+                            name: 'Taylor, the Eclectic Explorer',
+                            description: 'Curates an eclectic collection with a mix of styles, especially unique pieces over $30.'
+                        });
+                    }
+                    // Additional Thrifter 3
+                    if (priceRange === 'under-10' && style.includes('streetwear') && selectedOutfitImages.includes('outfit6')) {
+                        matchedThrifters.push({
+                            name: 'Chris, the Streetwear Explorer',
+                            description: 'Finds trendy streetwear items under $10, perfect for a bold and urban style.'
+                        });
+                    }
+
+                    // Additional Thrifter 4
+                    if (priceRange === '10-20' && style.includes('ath') && selectedOutfitImages.includes('outfit5')) {
+                        matchedThrifters.push({
+                            name: 'Taylor, the Athleisure Guru',
+                            description: 'Curates comfortable and stylish athleisure outfits within the $10-20 price range.'
+                        });
+                    }
+
+                    // Additional Thrifter 5
+                    if (priceRange === '20-30' && style.includes('formal') && selectedOutfitImages.includes('outfit4')) {
+                        matchedThrifters.push({
+                            name: 'James, the Formal Fashionista',
+                            description: 'Specializes in sourcing formal wear with a touch of sophistication, all within the $20-30 range.'
+                        });
+                    }
+
+                    // Additional Thrifter 6
+                    // Additional Thrifter 6
+                    if (priceRange === 'over-30' && style.length > 1 && selectedOutfitImages.includes('outfit1')) {
+                        matchedThrifters.push({
+                            name: 'Olivia, the Multi-Style Queen',
+                            description: 'Hunts for unique and timeless vintage pieces, especially those over $30. Loves combining various styles.'
+                        });
+                    }
+
+                    // Additional Thrifter 7
+                    if (priceRange === 'under-10' && style.includes('minimalist') && selectedOutfitImages.includes('outfit3')) {
+                        matchedThrifters.push({
+                            name: 'Ethan, the Budget Minimalist',
+                            description: 'Specializes in minimalist basics under $10, offering a simple yet stylish wardrobe.'
+                        });
+                    }
+
+
+                    // Add more matching logic as needed
+
+                    // Display results
+                    displayResults(matchedThrifters);
+                });
+
+                function displayResults(matches) {
+                    const resultsContainer = document.getElementById('results');
+                    const matchesElement = document.getElementById('matches');
+
+                    // Clear previous results
+                    matchesElement.innerHTML = '';
+
+                    if (matches.length > 0) {
+                        matches.forEach(match => {
+                            const matchElement = document.createElement('div');
+                            matchElement.innerHTML = `<p><strong>${match.name}</strong>: ${match.description}</p>`;
+                            matchesElement.appendChild(matchElement);
+                        });
+                    } else {
+                        matchesElement.innerHTML = 'No matches found.';
+                    }
+
+                    // Scroll to results
+                    resultsContainer.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            </script>
