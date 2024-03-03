@@ -16,6 +16,8 @@ h1 {
 nav {
     display: flex;
     justify-content: space-around;
+    perspective: 1000px;
+    /* Creates 3D perspective */
 }
 
 nav ul {
