@@ -1,54 +1,82 @@
-    body {
-        font-family: 'Raleway', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    
-    header {
-        background-color: #f0f0f0;
-        padding: 20px;
-    }
-    
-    h1 {
-        text-align: center;
-    }
-    
-    nav {
-        display: flex;
-        justify-content: space-around;
-        perspective: 1000px;
-        /* Creates 3D perspective */
-    }
-    
-    nav ul {
-        list-style: none;
-        padding: 0;
-    }
-    
-    nav li {
-        display: inline-block;
-        margin: 0 10px;
-    }
-    
-    nav a {
-        text-decoration: none;
-        color: black;
-    }
-    
-    main {
-        padding: 20px;
-    }
-    
-    section {
-        margin-bottom: 20px;
-    }
-    
-    h2 {
-        margin-bottom: 10px;
-    }
-    
-    footer {
-        text-align: center;
-        background-color: #f0f0f0;
-        padding: 10px;
-    }
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+}
+
+.navbar {
+    background-color: #008080;
+    padding: 20px;
+    /* Leigh Teal color */
+}
+
+
+/* Additional styling for navbar if needed */
+
+.navbar-toggler-icon {
+    background-color: #008080;
+    /* Change the color of the toggler icon if needed */
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffffff;
+    /* Set the color to white for the active link */
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    /* Change the color of the other navbar links if needed */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f0f0f0;
+    /* Change the hover color of the navbar links if needed */
+}
+
+h1 {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    perspective: 1000px;
+    /* Creates a 3D perspective */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
