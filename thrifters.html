@@ -11,32 +11,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
 
-    <link rel="stylesheet" href="style.css"> </head>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add your additional styles here */
+        
+        .style-picks-container img {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 
 <body>
     <header class="bg-light">
-        <nav class="navbar navbar-expand-lg navbar-light container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <img src="thrift-removebg-preview.png" alt="Thrift Buddy Logo" style="width: 220px; height: 50px">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="survey.html">Request a Box</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="thrifters.html">Our Thrifters</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <!-- Your header content -->
     </header>
 
     <main>
@@ -47,12 +36,28 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card">
-                            <img src="placeholder.jpg" alt="Thrifter Image" class="card-img-top">
+                            <img src="nikki.jpg" alt="Nikki's Thrifted Items" class="card-img-top">
                             <div class="card-body">
-                                <h5 class="card-title">Thrifter Name</h5>
-                                <p class="card-text">Short bio about the thrifter's style and interests.</p>
-                                <a href="#" class="btn btn-primary">See Style Picks</a>
+                                <h3 class="card-title">Nikki</h3>
+                                <p class="card-text">
+                                    <strong>Specialization:</strong><br> Streetwear
+                                </p>
+                                <p class="card-text">
+                                    <strong>Past Thrifted Outfits or Rare Items:</strong>
+                                    <ul>
+                                        <li>Jeff Hamilton Nascar Jacket</li>
+                                        <li>Vintage graphic tees</li>
+                                        <li>Vintage Levi’s jeans</li>
+                                        <li>Authentic Italian vintage leather</li>
+                                    </ul>
+                                </p>
+                                <p class="card-text">
+                                    <strong>Exploring the World Through Thrifting:</strong><br> The majority of my closet is thrifted, consisting of unique, sustainable pieces with stories. I enjoy thrifting during my travels, collecting unique items
+                                    from around the world. Whether exploring new cities or thrift shops in New York City, I document my experiences, review shops, and constantly seek new spots to add to my list.
+                                </p>
+                                <button id="stylePicksBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#stylePicksModal">See Style Picks</button>
                             </div>
+
                         </div>
                     </div>
 
@@ -62,9 +67,22 @@
             </div>
         </section>
 
-        <h2>Testimonials</h2>
-        <p>**Sample Review 1:** "I love Thrift Buddy! It helped me connect with other thrifters and find some amazing pieces for my wardrobe."</p>
-        <p>**Sample Review 2:** "The thrifter profiles are so inspiring! I learned so much about different styles and got great tips for shopping secondhand."</p>
+        <!-- Modal for Style Picks -->
+        <div class="modal fade" id="stylePicksModal" tabindex="-1" aria-labelledby="stylePicksModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="stylePicksModalLabel">Style Picks</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Container for style picks -->
+                        <div class="style-picks-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <footer class="bg-light text-center">
@@ -72,5 +90,36 @@
         <p>Email: info@thriftbuddy.com</p>
         <p>Phone: (555) 555-5555</p>
     </footer>
+
+    <!-- Bootstrap JavaScript and Popper.js scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('stylePicksBtn').addEventListener('click', showStylePicks);
+
+        function showStylePicks() {
+            // Replace the following with the paths to your local style pick images
+            const stylePicks = [
+                'il_570xN.4358298287_1tfn.webp',
+                'il_600x600.3639671380_r2z2.webp',
+                'style_pick_3.jpg'
+            ];
+
+            // Get the style picks container inside the modal
+            const stylePicksContainer = document.querySelector('#stylePicksModal .style-picks-container');
+
+            // Clear any previous style picks
+            stylePicksContainer.innerHTML = '';
+
+            // Append images to the container
+            stylePicks.forEach(imgPath => {
+                const imgElement = document.createElement('img');
+                imgElement.src = imgPath;
+                stylePicksContainer.appendChild(imgElement);
+            });
+        }
+    </script>
+</body>
 
 </html>
